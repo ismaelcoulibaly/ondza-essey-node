@@ -29,12 +29,13 @@ const swaggerOptions = {
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
-mongoose.connect('mongodb://localhost:27017/reservationDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/reservationDB', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connected!'));
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(routes);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
