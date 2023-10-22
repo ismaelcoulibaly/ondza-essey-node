@@ -39,9 +39,9 @@ mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-app.use(express.static('public'));
 app.use((req, res) => {
     res.status(404).send('Page not found');
   });
