@@ -27,10 +27,15 @@ const swaggerOptions = {
     },
     apis: ['./routes.js'],
 };
+
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
-mongoose.connect('mongodb://localhost:27017/reservationDB', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected!'));
+// MongoDB's connection URL - replace username, password and your_cluster_url with your actual MongoDB credentials
+const dbUrl = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}/?retryWrites=true&w=majority`;
+
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connected to MongoDB!'))
+    .catch(err => console.error('Could not connect to MongoDB: ', err));
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
