@@ -41,6 +41,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(routes);
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use(express.static('public'));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
