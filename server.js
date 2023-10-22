@@ -42,6 +42,10 @@ app.use(bodyParser.json());
 app.use(routes);
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(express.static('public'));
+app.use((req, res) => {
+    res.status(404).send('Page not found');
+  });
+  
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
