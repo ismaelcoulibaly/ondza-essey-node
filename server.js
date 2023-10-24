@@ -29,7 +29,9 @@ const swaggerOptions = {
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-
+const options = {
+    customCss: '.swagger-ui .topbar { display: none }'
+}
 // MongoDB's connection URL - replace username, password and your_cluster_url with your actual MongoDB credentials
 const dbUrl = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}/?retryWrites=true&w=majority`;
 
@@ -41,7 +43,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
-app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs, swaggerOptions));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs, options));
 app.use((req, res) => {
     res.status(404).send('Page not found');
   });
