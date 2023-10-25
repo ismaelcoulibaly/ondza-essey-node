@@ -88,7 +88,7 @@ router.post('/api/reservation/create', async (req, res) => {
                         "Email": reservation.email,
                     }],
                     "Subject": "Reservation Confirmation",
-                    "TextPart": "Your reservation has been confirmed!"
+                    "TextPart": "Your reservation has been confirmed for " + reservation.dateOfEvent
                 }]
             });
 

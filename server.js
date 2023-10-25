@@ -37,11 +37,11 @@ mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB!'))
     .catch(err => console.error('Could not connect to MongoDB: ', err));
 
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
-app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs, swaggerOptions));
 app.use((req, res) => {
     res.status(404).send('Page not found');
   });
