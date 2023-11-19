@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/swagger/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/",
+      "dest": "/server.js"
+    }
+  ],
+  "env": {
+    "MAILJET_API_KEY": "@mailjet_api_key",
+    "MAILJET_SECRET_KEY": "@mailjet_secret_key",
+    "DB_USERNAME": "@db_username",
+    "DB_PASSWORD": "@db_password",
+    "DB_CLUSTER": "@db_cluster"
+  },
+  "regions": ["all"]
+}
