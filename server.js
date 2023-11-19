@@ -50,3 +50,11 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+app.get('/', (req, res) => {
+    res.send('Hey this is my API running 🥳')
+})
+
+
+module.exports = app
+
