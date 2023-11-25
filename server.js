@@ -47,7 +47,7 @@ app.use('/', routes);
 
 // Catch-all for routes not found
 app.use((req, res, next) => {
-    res.status(404).send('Page not found');
+    res.status(401).send('Page not found');
 });
 
 // Global error handler
