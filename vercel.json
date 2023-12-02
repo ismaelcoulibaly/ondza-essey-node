@@ -1,27 +1,27 @@
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/routes.js"
-    },
-    {
-      "src": "/swagger-ui/(.*)",
-      "dest": "/node_modules/swagger-ui-dist/$1"
-    },
-    {
-      "src": "/api-docs",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/server.js"
-    }
-  ]
-}
+  {
+    "version": 2,
+    "builds": [
+      {
+        "src": "server.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/routes.js"
+      },
+      {
+        "src": "/swagger-ui/(.*)",
+        "dest": "/node_modules/swagger-ui-dist/$1"
+      },
+      {
+        "src": "/api-docs",
+        "dest": "/server.js"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/server.js"
+      }
+    ]
+  }
