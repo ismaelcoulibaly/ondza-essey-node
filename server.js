@@ -39,11 +39,9 @@ app.use(bodyParser.json());
 
 // Swagger Documentation Setup
 const swaggerDocs = swaggerJsDoc(options);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
-// Routes
-app.use('/api', routes);
 app.use('/', routes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/api', routes);
 
 // Catch-all for routes not found
 app.use((req, res, next) => {
