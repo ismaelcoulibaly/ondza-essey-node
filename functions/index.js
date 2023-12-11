@@ -32,7 +32,10 @@ app.use(bodyParser.json());
 
 // Swagger Documentation Setup
 app.use('/', routes);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/api-docs', (req, res, next) => {
+    res.setHeader('Content-Type', 'text/html');
+    next();
+}, swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use('/api', routes);
 
 // Catch-all for routes not found
