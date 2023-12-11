@@ -19,7 +19,8 @@ const subscriberSchema =  new mongoose.Schema({
 const Reservation = mongoose.model('Reservation', reservationSchema);
 const Subscriber = mongoose.model('Subscriber', subscriberSchema);
 
-module.exports = {Reservation,
+module.exports = {
+    Reservation,
     Subscriber,
     findReservationByEmail: (email) => Reservation.find({ email }),
     findFirstReservationByEmail: (email) => Reservation.findOne({ email }),
