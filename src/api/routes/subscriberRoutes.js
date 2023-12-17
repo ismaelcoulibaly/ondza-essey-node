@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { subscribe, getSubscribers } = require('../controllers/subscriberController');
+const { subscribe, getSubscribers } = require('../controllers/subscriberControllers');
 
 // Route to subscribe to the newsletter
 router.post('/subscribe', subscribe);

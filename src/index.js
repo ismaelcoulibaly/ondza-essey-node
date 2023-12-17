@@ -3,12 +3,13 @@ const mongoose = require('mongoose')
 const swaggerUi = require('swagger-ui-express')
 const swaggerJsdoc = require('swagger-jsdoc')
 const reservationRoutes = require('./api/routes/reservationRoutes')
+const subscriberRoutes = require('./api/routes/subscriberRoutes')
 require('dotenv').config()
 
 const app = express()
 app.use(express.json())
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect('mongodb://localhost:27017', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log('MongoDB Connected'))
@@ -22,7 +23,12 @@ const swaggerOptions = {
       title: 'Chef Reservation API',
       version: '1.0.0',
       description: 'API for managing chef reservations and newsletter subscriptions'
-    }
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000/', // Update this with your actual server URL
+      },
+    ],
   },
   apis: ['./src/api/routes/*.js']
 }
