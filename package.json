@@ -2,10 +2,10 @@
   "name": "ondza-essey-node",
   "version": "1.0.0",
   "description": "A Node.js Express API with Swagger, Mongoose, and Email capabilities",
-  "main": "src/api/index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node src/api/index.js",
-    "dev": "nodemon src/api/index.js",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "lint": "eslint .",
     "vercel-build": "echo hello!!"
   },

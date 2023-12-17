@@ -2,8 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const swaggerUi = require('swagger-ui-express')
 const swaggerJsdoc = require('swagger-jsdoc')
-const reservationRoutes = require('./routes/reservationRoutes')
-const swaggerDocument = require('./swagger.json');
+const reservationRoutes = require('./api/routes/reservationRoutes')
 require('dotenv').config()
 
 const app = express()
@@ -25,17 +24,16 @@ const swaggerOptions = {
       description: 'API for managing chef reservations and newsletter subscriptions'
     }
   },
-  apis: ['./routes/*.js']
+  apis: ['./src/api/routes/*.js']
 }
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
-app.use('/api', reservationRoutes)
-app.use('/api', reservationRoutes)
+app.use('/api/reservations', reservationRoutes);
+app.use('/api/subscribers', subscriberRoutes);
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 
-export default  app;
+module.exports = app
