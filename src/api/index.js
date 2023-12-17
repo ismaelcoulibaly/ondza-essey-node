@@ -32,7 +32,8 @@ const swaggerDocs = swaggerJsdoc(swaggerOptions)
 
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
-app.use('/reservations', reservationRoutes)
+app.use('/api', reservationRoutes)
+app.use('/api', reservationRoutes)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
