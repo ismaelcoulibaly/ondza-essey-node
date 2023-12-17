@@ -1,22 +1,19 @@
 {
-  "name": "functions",
-  "description": "Cloud Functions for Firebase",
+  "name": "ondza-essey-node",
+  "version": "1.0.0",
+  "description": "A Node.js Express API with Swagger, Mongoose, and Email capabilities",
+  "main": "src/api/index.js",
   "scripts": {
-    "lint": "functions/node_modules/.bin/eslint .",
-    "serve": "firebase emulators:start --only functions",
-    "shell": "firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "start": "node src/api/index.js",
+    "dev": "nodemon src/api/index.js",
+    "lint": "eslint ."
   },
   "engines": {
     "node": "18"
   },
-  "main": "src/api/index.js",
   "dependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-
     "mongoose": "^8.0.3",
     "node-mailjet": "^6.0.5",
     "swagger-jsdoc": "^6.2.8",
@@ -28,7 +25,8 @@
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-n": "^16.4.0",
-    "eslint-plugin-promise": "^6.1.1"
-    },
+    "eslint-plugin-promise": "^6.1.1",
+    "nodemon": "^2.0.15"
+  },
   "private": true
 }
