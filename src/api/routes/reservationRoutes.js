@@ -1,7 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const { Reservation, Subscriber } = require('../models');
-const mailjet = require('node-mailjet').apiConnect(process.env.MAILJET_API_KEY, process.env.MAILJET_SECRET_KEY);
+const express = require('express')
+const router = express.Router()
+const { Reservation } = require('../models')
 
 // Route to get all reservations
 /**
@@ -20,13 +19,13 @@ const mailjet = require('node-mailjet').apiConnect(process.env.MAILJET_API_KEY, 
  *                 $ref: '#/components/schemas/Reservation'
  */
 router.get('/reservations', async (req, res) => {
-    try {
-        const reservations = await Reservation.find();
-        res.json(reservations);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
+  try {
+    const reservations = await Reservation.find()
+    res.json(reservations)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
 
 // Route to create a new reservation
 /**
@@ -47,16 +46,16 @@ router.get('/reservations', async (req, res) => {
  *         description: Error in creating reservation
  */
 router.post('/reservation/create', async (req, res) => {
-    const reservation = new Reservation(req.body);
-    try {
-        const newReservation = await reservation.save();
-        // Send email logic goes here
-        res.status(201).json(newReservation);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
+  const reservation = new Reservation(req.body)
+  try {
+    const newReservation = await reservation.save()
+    // Send email logic goes here
+    res.status(201).json(newReservation)
+  } catch (err) {
+    res.status(400).json({ message: err.message })
+  }
+})
 
 // Add more routes as needed...
 
-module.exports = router;
+module.exports = router
