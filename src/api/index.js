@@ -3,9 +3,11 @@ const mongoose = require('mongoose')
 const swaggerUi = require('swagger-ui-express')
 const swaggerJsdoc = require('swagger-jsdoc')
 const reservationRoutes = require('./routes/reservationRoutes')
+const swaggerDocument = require('./swagger.json');
 require('dotenv').config()
 
 const app = express()
+app.use(express.json())
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -29,9 +31,8 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions)
 
 
-app.use(express.json())
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
-app.use('/', reservationRoutes)
+app.use('/reservations', reservationRoutes)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

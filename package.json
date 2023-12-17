@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/api/index.js",
     "dev": "nodemon src/api/index.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "vercel-build": "echo hello!!"
   },
   "engines": {
     "node": "18"
