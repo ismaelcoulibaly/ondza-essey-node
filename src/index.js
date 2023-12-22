@@ -6,35 +6,18 @@
   const subscriberRoutes = require('./api/routes/subscriberRoutes')
   require('dotenv').config()
   const path = require('path');
-  const { MongoClient, ServerApiVersion } = require('mongodb');
 
   const app = express()
   app.use(express.json())
   const cors = require('cors');
 
   app.use(cors());
-  const uri = process.env.MONGODB_URI;
-  console.log('process.env.MONGODB_URI', process.env.MONGODB_URI)
-  const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-  });
-  async function run() {
-    try {
-      // Connect the client to the server	(optional starting in v4.7)
-      await client.connect();
-      // Send a ping to confirm a successful connection
-      await client.db("admin").command({ ping: 1 });
-      console.log("Pinged your deployment. You successfully connected to MongoDB!");
-    } finally {
-      // Ensures that the client will close when you finish/error
-      await client.close();
-    }
-  }
-  run().catch(console.dir);
+  mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }).then(() => console.log('MongoDB Connected'))
+    .catch(err => console.error('MongoDB connection error:', err))
+
 
   const swaggerOptions = {
     definition: {
