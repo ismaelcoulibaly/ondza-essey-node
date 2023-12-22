@@ -18,7 +18,7 @@
     "mongoose": "^8.0.3",
     "node-mailjet": "^6.0.5",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "4.6.3"
   },
   "devDependencies": {
     "eslint": "^8.55.0",
