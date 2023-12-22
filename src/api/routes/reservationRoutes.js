@@ -7,6 +7,8 @@ const { createReservation, getReservations } = require('../controllers/reservati
  * @swagger
  * /reservations/create:
  *   post:
+ *     tags:
+ *       - Reservation
  *     summary: Create a new reservation
  *     requestBody:
  *       required: true
@@ -27,6 +29,8 @@ router.post('/reservations/create', createReservation);
  * @swagger
  * /reservations:
  *   get:
+ *     tags:
+ *       - Reservation
  *     summary: Retrieve a list of reservations
  *     responses:
  *       200:
