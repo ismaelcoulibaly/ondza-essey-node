@@ -5,7 +5,7 @@ const { createReservation, getReservations } = require('../controllers/reservati
 // Route to create a new reservation
 /**
  * @swagger
- * /reservations/create:
+ * /api/reservations/create:
  *   post:
  *     tags:
  *       - Reservation
@@ -22,12 +22,12 @@ const { createReservation, getReservations } = require('../controllers/reservati
  *       400:
  *         description: Error in creating reservation
  */
-router.post('/reservations/create', createReservation);
+router.post('/create', createReservation);
 
 // Route to get all reservations
 /**
  * @swagger
- * /reservations:
+ * /api/reservations:
  *   get:
  *     tags:
  *       - Reservation
@@ -42,6 +42,6 @@ router.post('/reservations/create', createReservation);
  *               items:
  *                 $ref: '#/components/schemas/Reservation'
  */
-router.get('/reservations', getReservations);
+router.get('/', getReservations);
 
 module.exports = router;
