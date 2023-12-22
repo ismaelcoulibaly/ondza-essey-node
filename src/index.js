@@ -27,7 +27,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:3000/', // Update this with your actual server URL
+        url: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000',
       },
     ],
     components: {
