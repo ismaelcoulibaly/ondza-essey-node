@@ -31,7 +31,7 @@
       },
       servers: [
         {
-          url: process.env.RENDER_EXTERNAL_URL ? `https://${process.env.RENDER_EXTERNAL_URL}` : 'http://localhost:3000',
+          url: process.env.RENDER_EXTERNAL_URL ? `${process.env.RENDER_EXTERNAL_URL}` : 'http://localhost:3000',
         },
       ],
       components: {
