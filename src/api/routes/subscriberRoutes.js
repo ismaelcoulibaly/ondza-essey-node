@@ -46,6 +46,6 @@ const { subscribe, getSubscribers } = require('../controllers/subscriberControll
 router.post('/subscribe', subscribe);
 
 // Route to get all subscribers
-router.get('/subscribers', getSubscribers);
+router.get('/', getSubscribers);
 
 module.exports = router;
