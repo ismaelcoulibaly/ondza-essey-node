@@ -68,8 +68,7 @@
                 enum: ['CULINARY_MASTERCLASSES', 'EXCLUSIVE_DININGS', 'TAILORED_CHEF_SERVICES'],
               },
               phone: {
-                type: 'integer',
-                format: 'int64',
+                type: 'string',
               },
               dateOfRequest: {
                 type: 'string',
