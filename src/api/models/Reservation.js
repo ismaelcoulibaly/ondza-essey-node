@@ -6,7 +6,7 @@ const reservationSchema = new mongoose.Schema({
     email: { type: String, required: true },
     message: { type: String, required: false },
     reservationType: { type: String, enum: ['CULINARY_MASTERCLASSES', 'EXCLUSIVE_DININGS', 'TAILORED_CHEF_SERVICES'], required: true },
-    phone: { type: Number, required: true },
+    phone: { type: String, required: true },
     dateOfRequest: { type: Date, required: true, default: Date.now},
     dateOfEvent: { type: Date, required: true },
     numberOfGuests: { type: Number, required: true }
