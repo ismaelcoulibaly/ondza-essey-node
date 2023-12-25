@@ -4,10 +4,10 @@
   "description": "A Node.js Express API with Swagger, Mongoose, and Email capabilities",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "lint": "eslint .",
-    "vercel-build": "echo hello!!"
+    "dev": "nodemon --exec babel-node src/index.js",
+    "build": "babel src -d dist",
+    "start": "node dist/index.js",
+    "both-dev": "concurrently \"npm run dev\" \"npm --prefix ../client/ run dev\""
   },
   "engines": {
     "node": "18"
@@ -21,12 +21,6 @@
     "node-mailjet": "^6.0.5",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "4.6.3"
-  },
-  "scripts": {
-    "dev": "nodemon --exec babel-node src/index.js",
-    "build": "babel src -d dist",
-    "start": "node dist/index.js",
-    "both-dev": "concurrently \"npm run dev\" \"npm --prefix ../client/ run dev\""
   },
   "devDependencies": {
     "@babel/cli": "^7.23.4",

@@ -1,8 +1,13 @@
 const Reservation = require('../models/Reservation');
 
-let mailjetApiKey = process.env.MAILJET_API_KEY
-let mailjetSecretKey = process.env.MAILJET_SECRET_KEY
-const mailjet = require('node-mailjet').connect(mailjetApiKey, mailjetSecretKey);
+require('dotenv').config();
+const Mailjet = require('node-mailjet');
+
+
+const mailjet = new Mailjet({
+    apiKey: process.env.MAILJET_API_KEY || 'your-api-key',
+    apiSecret: process.env.MAILJET_SECRET_KEY || 'your-api-secret'
+});
 
 exports.createReservation = async (req, res) => {
     try {
@@ -36,7 +41,7 @@ exports.getReservations = async (req, res) => {
 
 
 function sendEmail(variables) {
-    const request = mailjet.post("send", { version: 'v3.1' }).request({
+    const request = mailjet.post('send', { version: 'v3.1' }).request({
         Messages: [
             {
                 From: {
