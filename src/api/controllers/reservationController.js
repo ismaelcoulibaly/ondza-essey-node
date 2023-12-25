@@ -40,7 +40,7 @@ function sendEmail(variables) {
         Messages: [
             {
                 From: {
-                    Email: "jason@ondza.ca",
+                    Email: "ismael-coulibaly@outlook.com",
                     Name: "Ondza website"
                 },
                 To: [
