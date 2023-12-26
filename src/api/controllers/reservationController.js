@@ -12,26 +12,29 @@ const mailjet = new Mailjet({
 exports.createReservation = async (req, res) => {
     try {
         const newReservation = new Reservation(req.body);
-        await newReservation.save();
-        sendEmail({
+        const variables = {
             firstName: newReservation.firstName,
             lastName: newReservation.lastName,
             email: newReservation.email,
             phone: newReservation.phone,
             dateOfEvent: newReservation.dateOfEvent,
             numberOfGuests: newReservation.numberOfGuests,
-            additionalInfo: newReservation.additionalInfo,
+            message: newReservation.message === undefined ? '' : newReservation.message,
             reservationType: newReservation.reservationType
-        })
+        };
+        await newReservation.save();
+
+        sendEmail(variables)
         res.status(201).json(newReservation);
     } catch (error) {
+
         res.status(400).json({ message: error.message });
     }
 };
 
 exports.getReservations = async (req, res) => {
     try {
-        const reservations = await Reservation.find();
+        const reservations = await Reservation.find().sort({ dateOfCreation: -1 });
         res.json(reservations);
     } catch (error) {
         res.status(500).json({ message: error.message });

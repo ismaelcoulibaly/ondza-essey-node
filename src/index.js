@@ -12,6 +12,7 @@
   app.use(express.urlencoded({ extended: true }))
   const dbUrl = process.env.MONGODB_URI ? `${process.env.MONGODB_URI}` : 'mongodb://localhost:27017'
   const cors = require('cors');
+  const Reservation = require("./api/models/Reservation");
 
   app.use(cors());
   mongoose.connect(dbUrl, {
@@ -109,6 +110,19 @@
   app.use('/api/reservations', reservationRoutes);
   app.use('/api/subscribers', subscriberRoutes);
   app.use(express.static(path.join(__dirname, 'public')));
+  app.set('view engine', 'ejs');
+
+  app.set('views', path.join(__dirname, 'views'));
+  app.get('/admin', (req, res) => {
+
+    Reservation.find().sort({ dateOfCreation: -1 }).then(reservations => {
+      res.render('admin', { reservations });
+    }).catch(error => {
+      res.status(500).send(error.message);
+    });
+
+  });
+
   app.use((req, res, next) => {
     const err = new Error('Not Found');
     err.status = 404;

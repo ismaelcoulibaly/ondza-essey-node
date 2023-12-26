@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+<!--    <link rel="stylesheet" href="/stylesheets/style.css">-->
+
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Date of Event</th>
+                <th>Number of Guests</th>
+                <th>Additional Info</th>
+                <th>Reservation Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% reservations.forEach(function(reservation) { %>
+                <tr>
+                    <td><%= reservation.firstName %></td>
+                    <td><%= reservation.lastName %></td>
+                    <td><%= reservation.email %></td>
+                    <td><%= reservation.phone %></td>
+                    <td><%= reservation.dateOfEvent.toDateString() %></td>
+                    <td><%= reservation.numberOfGuests %></td>
+                    <td><%= reservation.message %></td>
+                    <td><%= reservation.reservationType %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <script src="/javascripts/script.js"></script>
+</body>
+</html>

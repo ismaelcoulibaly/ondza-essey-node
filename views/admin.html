@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .container {
+      width: 90%;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Reservations Admin Panel</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Date Created</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Date of Event</th>
+      <th>Number of Guests</th>
+      <th>Additional Info</th>
+      <th>Reservation Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% reservations.forEach(function(reservation) { %>
+    <tr>
+      <td><%= reservation.dateCreated %></td>
+      <td><%= reservation.firstName %></td>
+      <td><%= reservation.lastName %></td>
+      <td><%= reservation.email %></td>
+      <td><%= reservation.phone %></td>
+      <td><%= reservation.dateOfEvent %></td>
+      <td><%= reservation.numberOfGuests %></td>
+      <td><%= reservation.message %></td>
+      <td><%= reservation.reservationType %></td>
+    </tr>
+    <% }); %>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
