@@ -23,8 +23,17 @@ exports.createReservation = async (req, res) => {
             reservationType: newReservation.reservationType
         };
         await newReservation.save();
-        console.log('Sending email with variables:', variables);
-        sendEmail(variables)
+
+        sendEmail({
+            firstName: newReservation.firstName,
+            lastName: newReservation.lastName,
+            email: newReservation.email,
+            phone: newReservation.phone,
+            dateOfEvent: newReservation.dateOfEvent,
+            numberOfGuests: newReservation.numberOfGuests,
+            message: newReservation.message === undefined ? '' : newReservation.message,
+            reservationType: newReservation.reservationType
+        })
         res.status(201).json(newReservation);
     } catch (error) {
 
@@ -60,10 +69,8 @@ function sendEmail(variables) {
                 TemplateID: 5493770,
                 TemplateLanguage: true,
                 Subject: "New Reservation on Ondza",
-                Variables: {
-                    ...variables,
-                    dateOfEvent: new Date(variables.dateOfEvent).toLocaleString()
-                }
+                Variables: variables
+
             }
         ]
     });
@@ -71,13 +78,8 @@ function sendEmail(variables) {
     request
         .then((result) => {
             console.log(result.body);
-            
         })
         .catch((err) => {
             console.log(err.statusCode);
-            console.error('Error sending email:', err.statusCode, err.message);
-
         });
 }
-
-
