@@ -24,7 +24,7 @@ exports.createReservation = async (req, res) => {
         };
         await newReservation.save();
 
-        sendEmail({
+        await sendEmail({
             firstName: newReservation.firstName,
             lastName: newReservation.lastName,
             email: newReservation.email,
@@ -68,14 +68,13 @@ function sendEmail(variables) {
                 ],
                 TemplateID: 5493770,
                 TemplateLanguage: true,
-                Subject: "New Reservation on Ondza",
-                Variables: variables
-
+              Subject: "New Reservation on Ondza",
+                Variables: variables,
             }
         ]
     });
 
-    request
+    return request
         .then((result) => {
             console.log(result.body);
         })
