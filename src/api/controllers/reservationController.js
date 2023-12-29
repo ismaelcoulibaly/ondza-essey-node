@@ -23,7 +23,7 @@ exports.createReservation = async (req, res) => {
             reservationType: newReservation.reservationType
         };
         await newReservation.save();
-
+        console.log('Sending email with variables:', variables);
         sendEmail(variables)
         res.status(201).json(newReservation);
     } catch (error) {
@@ -71,8 +71,11 @@ function sendEmail(variables) {
     request
         .then((result) => {
             console.log(result.body);
+            
         })
         .catch((err) => {
             console.log(err.statusCode);
+            console.error('Error sending email:', err.statusCode, err.message);
+
         });
 }
