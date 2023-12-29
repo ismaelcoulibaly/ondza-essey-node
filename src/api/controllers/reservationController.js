@@ -76,7 +76,10 @@ function sendEmail(variables) {
 
     return request
         .then((result) => {
-            console.log(result.body);
+            console.log('result body' ,result.body);
+            console.log('result response ' , result.response);
+            console.log('result ' ,result);
+
         })
         .catch((err) => {
             console.log(err.statusCode);
