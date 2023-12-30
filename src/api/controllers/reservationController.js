@@ -17,7 +17,6 @@ exports.createReservation = async (req, res) => {
             lastName: newReservation.lastName,
             email: newReservation.email,
             phone: newReservation.phone,
-            dateOfEvent: newReservation.dateOfEvent,
             numberOfGuests: newReservation.numberOfGuests,
             message: newReservation.message === undefined ? '' : newReservation.message,
             reservationType: newReservation.reservationType
@@ -30,7 +29,6 @@ exports.createReservation = async (req, res) => {
             lastName: newReservation.lastName,
             email: newReservation.email,
             phone: newReservation.phone,
-            dateOfEvent: newReservation.dateOfEvent,
             numberOfGuests: newReservation.numberOfGuests,
             message: newReservation.message === undefined ? '' : newReservation.message,
             reservationType: newReservation.reservationType
