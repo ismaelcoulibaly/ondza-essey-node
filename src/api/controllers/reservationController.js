@@ -17,18 +17,19 @@ exports.createReservation = async (req, res) => {
             lastName: newReservation.lastName,
             email: newReservation.email,
             phone: newReservation.phone,
+            dateOfEvent: newReservation.dateOfEvent,
             numberOfGuests: newReservation.numberOfGuests,
             message: newReservation.message === undefined ? '' : newReservation.message,
             reservationType: newReservation.reservationType
         };
         await newReservation.save();
-        console.log('createReservation variables ' , variables);
 
         await sendEmail({
             firstName: newReservation.firstName,
             lastName: newReservation.lastName,
             email: newReservation.email,
             phone: newReservation.phone,
+            dateOfEvent: convertIsoToHumanReadable(newReservation.dateOfEvent),
             numberOfGuests: newReservation.numberOfGuests,
             message: newReservation.message === undefined ? '' : newReservation.message,
             reservationType: newReservation.reservationType
@@ -76,11 +77,24 @@ function sendEmail(emailVariables) {
     return request
         .then((result) => {
             console.log('result body' ,result.body);
-            console.log('result response ' , result.response);
-            console.log('result ' ,result);
-
         })
         .catch((err) => {
             console.log(err.statusCode);
         });
 }
+
+const convertIsoToHumanReadable = (isoString) => {
+    const date = new Date(isoString);
+    const humanReadableDate = date.toLocaleString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZoneName: 'short'
+    });
+    return humanReadableDate;
+};
+
