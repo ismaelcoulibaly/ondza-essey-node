@@ -23,6 +23,7 @@ exports.createReservation = async (req, res) => {
             reservationType: newReservation.reservationType
         };
         await newReservation.save();
+        console.log('createReservation variables ' , variables);
 
         await sendEmail({
             firstName: newReservation.firstName,
@@ -69,7 +70,6 @@ function sendEmail(emailVariables) {
                 ],
                 TemplateID: 5493770,
                 TemplateLanguage: true,
-              Subject: "New Reservation on Ondza",
                 Variables: emailVariables,
             }
         ]
