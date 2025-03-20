@@ -63,7 +63,7 @@ function sendEmail(emailVariables) {
                 },
                 To: [
                     {
-                        Email: "jason.ngolley@icloud.com",
+                        Email: "ondza7@icloud.com",
                         Name: "Jason Ngolley"
                     }
                 ],
